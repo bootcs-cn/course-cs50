@@ -1,0 +1,39 @@
+# stages/mario-less.yml
+version: "1.0"
+
+slug: mario-less
+name: "Mario (Less)"
+description: mario-less.md
+summary: |
+  使用 # 打印半个金字塔，练习循环和条件语句。
+
+category: week-1
+language: c
+
+evaluation:
+  timeout: 60
+  check_path: checks/mario-less
+
+starter:
+  path: starters/mario-less
+
+files:
+  required:
+    - mario.c
+  allowed:
+    - "*.c"
+    - "*.h"
+  blocked:
+    - "*.o"
+    - "*.exe"
+
+hints:
+  - "使用嵌套循环：外层控制行数，内层控制列数"
+  - "先打印空格，再打印 #"
+  - "使用 get_int 获取用户输入"
+
+resources:
+  - title: "Lecture 1: C"
+    url: https://cs50.harvard.edu/x/2024/weeks/1/
+  - title: "Loops in C"
+    url: https://manual.cs50.io/

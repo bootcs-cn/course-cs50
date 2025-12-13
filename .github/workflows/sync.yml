@@ -1,0 +1,32 @@
+# .github/workflows/sync.yml
+#
+# 课程同步到 BootCS API
+# 触发条件：推送到 main 分支 或 手动触发
+
+name: Sync Course
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install js-yaml
+
+      - name: Parse and Sync
+        env:
+          BOOTCS_API_URL: ${{ secrets.BOOTCS_API_URL }}
+          SYNC_SECRET: ${{ secrets.SYNC_SECRET }}
+        run: node scripts/sync-to-api.js

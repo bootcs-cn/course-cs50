@@ -1,0 +1,116 @@
+/**
+ * 课程同步脚本
+ *
+ * 解析 course.yml 和 stages/*.yml，调用 bootcs-api 同步接口
+ */
+const fs = require("fs");
+const path = require("path");
+const yaml = require("js-yaml");
+
+// 读取 Markdown 文件内容（如果 description 是 .md 引用）
+function readDescription(dir, description) {
+  if (!description) return null;
+  if (description.endsWith(".md")) {
+    const mdPath = path.join(dir, description);
+    if (fs.existsSync(mdPath)) {
+      return fs.readFileSync(mdPath, "utf8");
+    }
+    console.warn(`Warning: ${mdPath} not found`);
+    return null;
+  }
+  return description; // 内联文本
+}
+
+async function main() {
+  const apiUrl = process.env.BOOTCS_API_URL;
+  const syncSecret = process.env.SYNC_SECRET;
+
+  if (!apiUrl || !syncSecret) {
+    console.error("Missing BOOTCS_API_URL or SYNC_SECRET environment variables");
+    process.exit(1);
+  }
+
+  // 1. 解析 course.yml
+  const courseYml = yaml.load(fs.readFileSync("course.yml", "utf8"));
+  const courseDescription = readDescription(".", courseYml.description);
+
+  console.log(`Syncing course: ${courseYml.slug} (${courseYml.name})`);
+
+  // 2. 解析所有 stage yml
+  const stagesDir = "stages";
+  const stages = [];
+
+  for (const file of fs.readdirSync(stagesDir)) {
+    if (file.endsWith(".yml")) {
+      const stageYml = yaml.load(
+        fs.readFileSync(path.join(stagesDir, file), "utf8")
+      );
+      // 读取 Markdown 描述
+      const stageDescription = readDescription(stagesDir, stageYml.description);
+      // 从 stage_order 获取 position
+      const position = courseYml.stage_order?.indexOf(stageYml.slug) ?? 999;
+      stages.push({ ...stageYml, description: stageDescription, position });
+      console.log(`  - Stage: ${stageYml.slug} (position: ${position})`);
+    }
+  }
+
+  // 3. 构建请求体
+  const payload = {
+    course: {
+      slug: courseYml.slug,
+      name: courseYml.name,
+      summary: courseYml.summary,
+      description: courseDescription,
+      icon: courseYml.icon,
+      difficulty: courseYml.difficulty,
+      status: courseYml.status,
+      evaluatorImage: courseYml.evaluation?.image,
+      defaultTimeout: courseYml.evaluation?.timeout,
+      tags: courseYml.tags,
+    },
+    stages: stages.map((s) => ({
+      slug: s.slug,
+      name: s.name,
+      summary: s.summary,
+      description: s.description,
+      position: s.position,
+      language: s.language,
+      category: s.category,
+      timeout: s.evaluation?.timeout,
+      checkPath: s.evaluation?.check_path,
+      starterPath: s.starter?.path,
+      starterUrl: s.starter?.url,
+      filesRequired: s.files?.required,
+      filesAllowed: s.files?.allowed,
+      filesBlocked: s.files?.blocked,
+    })),
+  };
+
+  // 4. 调用 API
+  console.log(`\nCalling ${apiUrl}/api/admin/courses/sync...`);
+
+  const response = await fetch(`${apiUrl}/api/admin/courses/sync`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${syncSecret}`,
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    console.error(`Sync failed (${response.status}):`, errorText);
+    process.exit(1);
+  }
+
+  const result = await response.json();
+  console.log("\n✅ Sync successful!");
+  console.log(`  Course: ${result.course?.action || "unknown"}`);
+  console.log(`  Stages: created=${result.stages?.created || 0}, updated=${result.stages?.updated || 0}`);
+}
+
+main().catch((err) => {
+  console.error("Sync error:", err);
+  process.exit(1);
+});

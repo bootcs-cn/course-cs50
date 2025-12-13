@@ -1,0 +1,34 @@
+# course.yml
+version: "1.0"
+
+# 课程基本信息
+slug: cs50
+name: "CS50: Introduction to Computer Science"
+description: README.md
+summary: |
+  哈佛大学计算机科学入门课程，涵盖 C、Python、SQL 和 Web 开发。
+
+icon: https://cdn.bootcs.cn/icons/cs50.svg
+difficulty: medium
+status: beta
+
+# 评测配置
+evaluation:
+  image: ghcr.io/bootcs-cn/bootcs-cli:cs50
+  timeout: 120
+
+# 标签
+tags:
+  - c
+  - python
+  - algorithms
+  - data-structures
+
+# 先修课程
+prerequisites: []
+
+# 阶段顺序（决定 position）
+stage_order:
+  - hello
+  - mario-less
+  - cash

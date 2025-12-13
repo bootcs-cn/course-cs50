@@ -1,0 +1,39 @@
+# stages/cash.yml
+version: "1.0"
+
+slug: cash
+name: "Cash"
+description: cash.md
+summary: |
+  实现贪心算法，计算找零所需的最少硬币数量。
+
+category: week-1
+language: c
+
+evaluation:
+  timeout: 60
+  check_path: checks/cash
+
+starter:
+  path: starters/cash
+
+files:
+  required:
+    - cash.c
+  allowed:
+    - "*.c"
+    - "*.h"
+  blocked:
+    - "*.o"
+    - "*.exe"
+
+hints:
+  - "使用贪心算法：优先使用大面值硬币"
+  - "美国硬币面值：25, 10, 5, 1 分"
+  - "使用取模和整除操作"
+
+resources:
+  - title: "Lecture 1: C"
+    url: https://cs50.harvard.edu/x/2024/weeks/1/
+  - title: "Greedy Algorithms"
+    url: https://cs50.harvard.edu/x/2024/shorts/greedy_algorithms/
