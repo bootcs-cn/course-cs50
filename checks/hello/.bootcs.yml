@@ -1,0 +1,3 @@
+bootcs:
+  files:
+    - !include "*.c"
