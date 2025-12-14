@@ -20,3 +20,9 @@ CS50 是哈佛大学的计算机科学入门课程，由 David J. Malan 教授�
 
 - [CS50 官方网站](https://cs50.harvard.edu/)
 - [CS50 Manual](https://manual.cs50.io/)
+
+## 本地自测
+
+```bash
+docker run --rm -v $(pwd):/workspace ghcr.io/bootcs-cn/bootcs-cli:cs50 check cs50/<stage>
+```
