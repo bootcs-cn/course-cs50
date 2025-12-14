@@ -104,7 +104,10 @@ async function main() {
     process.exit(1);
   }
 
-  const result = await response.json();
+  const responseData = await response.json();
+  // API 返回统一格式 { success: true, data: {...} }
+  const result = responseData.data || responseData;
+  
   console.log("\n✅ Sync successful!");
   console.log(`  Course: ${result.course?.action || "unknown"}`);
   console.log(`  Stages: created=${result.stages?.created || 0}, updated=${result.stages?.updated || 0}`);
