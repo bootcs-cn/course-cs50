@@ -1,0 +1,30 @@
+# stages/readability.yml
+version: "1.0"
+
+slug: readability
+name: "Readability"
+description: readability.md
+summary: |
+  实现一个程序来计算文本的可读性等级。
+
+category: week-2
+language: c
+
+evaluation:
+  timeout: 60
+  check_path: checks/readability
+
+starter:
+  path: starters/readability
+
+files:
+  required:
+    - readability.c
+  allowed:
+    - "*.c"
+    - "*.h"
+  blocked:
+    - "*.o"
+    - "*.exe"
+
+hints:

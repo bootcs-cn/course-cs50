@@ -1,0 +1,36 @@
+# stages/mario-more.yml
+version: "1.0"
+
+slug: mario-more
+name: "Mario (More)"
+description: mario-more.md
+summary: |
+  实现双侧金字塔版本的 Mario 程序。
+
+category: week-1
+language: c
+
+evaluation:
+  timeout: 60
+  check_path: checks/mario-more
+
+starter:
+  path: starters/mario-more
+
+files:
+  required:
+    - mario.c
+  allowed:
+    - "*.c"
+    - "*.h"
+  blocked:
+    - "*.o"
+    - "*.exe"
+
+hints:
+  - "两个金字塔之间有两个空格"
+  - "使用嵌套循环分别打印空格、左侧井号、中间空格、右侧井号"
+
+resources:
+  - title: "Lecture 1: C"
+    url: https://cs50.harvard.edu/x/2024/weeks/1/

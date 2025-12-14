@@ -1,0 +1,36 @@
+# stages/me.yml
+version: "1.0"
+
+slug: me
+name: "Me"
+description: me.md
+summary: |
+  实现一个程序，接收用户输入的名字并输出问候语。
+
+category: week-1
+language: c
+
+evaluation:
+  timeout: 60
+  check_path: checks/me
+
+starter:
+  path: starters/me
+
+files:
+  required:
+    - hello.c
+  allowed:
+    - "*.c"
+    - "*.h"
+  blocked:
+    - "*.o"
+    - "*.exe"
+
+hints:
+  - "使用 get_string 获取用户输入的名字"
+  - "使用 printf 和 %s 格式化输出"
+
+resources:
+  - title: "Lecture 1: C"
+    url: https://cs50.harvard.edu/x/2024/weeks/1/

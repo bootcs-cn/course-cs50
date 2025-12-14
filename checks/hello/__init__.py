@@ -15,11 +15,16 @@ def file_exists():
 @check(file_exists)
 def compiles():
     """hello.c compiles"""
-    c.compile("hello.c")
+    c.compile("hello.c", lcs50=True)
 
 
 @check(compiles)
-def prints_hello():
-    """prints hello"""
-    # 简化版：只检查输出包含 hello
-    run("./hello").stdout("[Hh]ello").exit(0)
+def emma():
+    """responds to name Emma"""
+    run("./hello").stdin("Emma", prompt=True).stdout("Emma").exit(0)
+
+
+@check(compiles)
+def rodrigo():
+    """responds to name Rodrigo"""
+    run("./hello").stdin("Rodrigo", prompt=True).stdout("Rodrigo").exit(0)

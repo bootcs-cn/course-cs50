@@ -15,7 +15,7 @@ def file_exists():
 @check(file_exists)
 def compiles():
     """cash.c compiles"""
-    c.compile("cash.c")
+    c.compile("cash.c", lcs50=True)
 
 
 @check(compiles)
@@ -52,6 +52,18 @@ def test230():
 def test_reject_negative():
     """rejects a negative input like -1"""
     run("./cash").stdin("-1").reject()
+
+
+@check(compiles)
+def test_reject_foo():
+    """rejects a non-numeric input of "foo" """
+    run("./cash").stdin("foo").reject()
+
+
+@check(compiles)
+def test_reject_empty():
+    """rejects a non-numeric input of "" """
+    run("./cash").stdin("").reject()
 
 
 def coins(num):

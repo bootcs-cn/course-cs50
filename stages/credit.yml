@@ -1,0 +1,41 @@
+# stages/credit.yml
+version: "1.0"
+
+slug: credit
+name: "Credit"
+description: credit.md
+summary: |
+  实现信用卡号验证程序，使用 Luhn 算法。
+
+category: week-1
+language: c
+
+evaluation:
+  timeout: 60
+  check_path: checks/credit
+
+starter:
+  path: starters/credit
+
+files:
+  required:
+    - credit.c
+  allowed:
+    - "*.c"
+    - "*.h"
+  blocked:
+    - "*.o"
+    - "*.exe"
+
+hints:
+  - "使用 get_long 获取卡号"
+  - "Luhn 算法：从右向左，偶数位乘 2 后各位数相加"
+  - "AMEX 以 34 或 37 开头，15 位"
+  - "MASTERCARD 以 51-55 开头，16 位"
+  - "VISA 以 4 开头，13 或 16 位"
+
+resources:
+  - title: "Lecture 1: C"
+    url: https://cs50.harvard.edu/x/2024/weeks/1/
+  - title: "Luhn Algorithm"
+    url: https://en.wikipedia.org/wiki/Luhn_algorithm

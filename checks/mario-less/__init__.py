@@ -10,13 +10,13 @@ from bootcs.check import c
 def file_exists():
     """mario.c exists"""
     exists("mario.c")
-    include("1.txt", "2.txt", "8.txt")
+    include("1.txt", "2.txt", "8.txt", "12.txt")
 
 
 @check(file_exists)
 def compiles():
     """mario.c compiles"""
-    c.compile("mario.c")
+    c.compile("mario.c", lcs50=True)
 
 
 @check(compiles)
@@ -54,8 +54,21 @@ def test8():
 
 @check(compiles)
 def test9():
-    """rejects a height of 9"""
-    run("./mario").stdin("9").reject()
+    """rejects a height of -1, and then accepts a height of 2"""
+    out = run("./mario").stdin("-1").reject().stdin("2").stdout()
+    check_pyramid(out, open("2.txt").read())
+
+
+@check(compiles)
+def test_reject_foo():
+    """rejects a non-numeric height of "foo" """
+    run("./mario").stdin("foo").reject()
+
+
+@check(compiles)
+def test_reject_empty():
+    """rejects a non-numeric height of "" """
+    run("./mario").stdin("").reject()
 
 
 def check_pyramid(output, correct):
