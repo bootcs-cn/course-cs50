@@ -25,6 +25,9 @@ RUN cd /tmp \
 # 复制检查脚本
 COPY checks/ /checks/
 
+# 设置检查脚本路径环境变量（这样就不需要 --local 参数）
+ENV BOOTCS_CHECKS_PATH=/checks
+
 # 工作目录
 WORKDIR /workspace
 
