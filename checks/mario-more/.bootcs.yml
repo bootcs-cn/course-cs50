@@ -1,3 +1,4 @@
 bootcs:
   files:
-    - !include "*.c"
+    - !exclude "*"
+    - !require "*.c"
