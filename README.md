@@ -57,3 +57,4 @@ alias bootcs='docker run --rm -v $(pwd):/workspace ghcr.io/bootcs-dev/bootcs-cli
 bootcs check cs50/credit
 ```
 
+
