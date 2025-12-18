@@ -1,0 +1,46 @@
+# stages/songs.yml
+version: "1.0"
+
+slug: songs
+name: "Songs"
+description: songs.md
+summary: |
+  编写 SQL 查询来分析 Spotify 歌曲数据库。
+
+category: Week 7
+
+# SQL 只支持单语言
+languages:
+  sql:
+    # SQL 题目没有 starter 代码，学生从零开始写
+    files:
+      required:
+        - 1.sql
+        - 2.sql
+        - 3.sql
+        - 4.sql
+        - 5.sql
+        - 6.sql
+        - 7.sql
+        - 8.sql
+        - answers.txt
+      allowed:
+        - "*.sql"
+        - "*.txt"
+      blocked: []
+
+# 评测配置
+evaluation:
+  timeout: 60
+
+hints:
+  - "使用 SELECT 语句从表中检索数据"
+  - "使用 WHERE 子句过滤结果"
+  - "使用 ORDER BY 对结果排序"
+  - "使用 AVG、COUNT 等聚合函数"
+
+resources:
+  - title: "Lecture 7: SQL"
+    url: https://cs50.harvard.edu/x/2024/weeks/7/
+  - title: "SQL Keywords"
+    url: https://www.w3schools.com/sql/sql_ref_keywords.asp
