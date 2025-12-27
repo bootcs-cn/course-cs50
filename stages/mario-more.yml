@@ -3,6 +3,7 @@ version: "1.0"
 
 slug: mario-more
 name: "Mario (More)"
+difficulty: medium
 description: mario-more.md
 summary: |
   实现双侧金字塔版本的 Mario 程序。

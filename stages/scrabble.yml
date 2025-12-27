@@ -3,6 +3,7 @@ version: "1.0"
 
 slug: scrabble
 name: "Scrabble"
+difficulty: medium
 description: scrabble.md
 summary: |
   实现一个程序来判断 Scrabble 游戏中哪位玩家获胜。

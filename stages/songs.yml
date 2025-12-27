@@ -3,6 +3,7 @@ version: "1.0"
 
 slug: songs
 name: "Songs"
+difficulty: medium
 description: songs.md
 summary: |
   编写 SQL 查询来分析 Spotify 歌曲数据库。

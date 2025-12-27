@@ -3,6 +3,7 @@ version: "1.0"
 
 slug: caesar
 name: "Caesar"
+difficulty: medium
 description: caesar.md
 summary: |
   实现凯撒密码加密程序，使用命令行参数指定密钥。

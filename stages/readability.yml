@@ -3,6 +3,7 @@ version: "1.0"
 
 slug: readability
 name: "Readability"
+difficulty: medium
 description: readability.md
 summary: |
   实现一个程序来计算文本的可读性等级。

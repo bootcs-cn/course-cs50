@@ -3,6 +3,7 @@ version: "1.0"
 
 slug: mario-less
 name: "Mario (Less)"
+difficulty: easy
 description: mario-less.md
 summary: |
   使用 # 打印半个金字塔，练习循环和条件语句。

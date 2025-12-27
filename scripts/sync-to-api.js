@@ -119,6 +119,7 @@ async function main() {
         // v2: 新字段
         languageConfigs: languageConfigs,
         isFree: isFree,
+        difficulty: s.difficulty, // stage 级别的难度
         // 向后兼容: 保留主语言作为 language 字段
         language: primaryLanguage,
         // 从 languageConfigs 中提取主语言的配置（向后兼容）

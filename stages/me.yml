@@ -3,6 +3,7 @@ version: "1.0"
 
 slug: me
 name: "Me"
+difficulty: easy
 description: me.md
 summary: |
   实现一个程序，接收用户输入的名字并输出问候语。

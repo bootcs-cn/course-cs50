@@ -3,6 +3,7 @@ version: "1.0"
 
 slug: hello
 name: "Hello"
+difficulty: easy
 description: hello.md
 summary: |
   实现一个程序，向用户打招呼。

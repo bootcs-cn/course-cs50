@@ -3,6 +3,7 @@ version: "1.0"
 
 slug: cash
 name: "Cash"
+difficulty: easy
 description: cash.md
 summary: |
   实现贪心算法，计算找零所需的最少硬币数量。

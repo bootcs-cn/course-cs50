@@ -3,6 +3,7 @@ version: "1.0"
 
 slug: credit
 name: "Credit"
+difficulty: hard
 description: credit.md
 summary: |
   实现信用卡号验证程序，使用 Luhn 算法。
